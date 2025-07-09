@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Absolute HR Solution & Consultancy</title>
+
+  <style>
+    header {
+      background-color: #8c7f7a;
+      color: #fff;
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f1ee;
+      color: #2c2c2c;
+      padding-top: 140px; /* Add padding equal to the header height */
+    }
+
+    .header-container {
+      position: relative;
+    }
+
+    .right-logo {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      max-width: 220px;
+      height: auto;
+    }
+
+    .company-title {
+      font-size: 1.8rem;
+      font-weight: bold;
+      max-width: 80%;
+    }
+
+    .logo {
+      width: 200px;
+      height: auto;
+    }
+
+    @media (max-width: 600px) {
+      .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .company-title {
+        max-width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .logo {
+        width: 80px;
+      }
+
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: #8c7f7a;
+      }
+
+      .nested-menu {
+        position: static;
+        width: 100%;
+        background-color: #fff;
+        box-shadow: none;
+        padding: 2rem;
+        margin-top: 0.5rem;
+      }
+
+      nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav ul li {
+        margin: 0.25rem 0.5rem;
+      }
+
+      .footer-container {
+        padding-right: 1rem;
+        font-size: 0.85rem;
+      }
+
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+
+    nav ul li {
+      margin: 0 1rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+      color: #f4f1ee;
+    }
+
+    /* Main Dropdown */
+    .dropdown-header {
+      position: relative;
+    }
+
+    .dropdown-header > a {
+      color: white;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #8c7f7a;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      min-width: 200px;
+      border-radius: 6px;
+      z-index: 1000;
+    }
+
+    .dropdown-header:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu li {
+      position: relative;
+    }
+
+    .dropdown-menu a {
+      color: white;
+      padding: 0.75rem 1rem;
+      display: block;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #6e615d;
+    }
+
+    /* Nested Dropdown */
+    .nested-menu {
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 100%;
+      background-color: #ffffff;
+      color: #4a1a5b;
+      padding: 1rem;
+      min-width: 320px;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .nested-dropdown:hover .nested-menu {
+      display: block;
+    }
+
+    /* Info Styling */
+    .info-block {
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #4a1a5b;
+    }
+
+    .info-block p {
+      margin: 0 0 0.5rem;
+      font-weight: 600;
+    }
+
+    .info-list {
+      list-style: disc inside;
+      margin: 0;
+      padding: 0 0 0 1rem;
+    }
+
+    .info-list li {
+      margin-bottom: 0.4rem;
+    }
+
+    .note {
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid #ccc;
+    }
+
+    .note p {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .note ul {
+      list-style: disc inside;
+      padding-left: 1rem;
+      margin: 0;
+    }
+
+    .note ul li {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-link {
+      background-color: #ccc;
+      color: #8c7f7a;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .contact-link:hover {
+      color: #6e615d;
+    }
+
+    .hero {
+      background: url("assets/hshake.png") no-repeat left center;
+      background-size: cover;
+      padding: 10rem 1rem;
+      text-align: center;
+      color: #2c2c2c;
+      position: relative;
+      min-height: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    h2 {
+      color: #2c2c2c;
+      margin-top: 2rem;
+    }
+
+    .service-item {
+      margin-bottom: 1.5rem; /* Space between service dropdowns */
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow like Why Us */
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .dropdown-btn {
+      background-color: #8c7f7a; /* Distinct yet consistent with site palette */
+      color: white;
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border: none;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 10px 10px 0 0;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-btn:hover {
+      background-color: #6e615d; /* Softer hover tone */
+    }
+
+    .dropdown-content {
+      display: none;
+      background-color: #ffffff; /* Clear contrast */
+      color: #2c2c2c;
+      padding: 1rem 1.25rem;
+      border-top: 1px solid #eee;
+      border-radius: 0 0 10px 10px;
+      box-shadow: inset 0 1px 0 rgba(0,0,0,0.03);
+    }
+
+    .service-item.active .dropdown-content {
+      display: block;
+    }
+        
+    .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    }
+
+    .why-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: start;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    }
+
+    .why-header {
+    text-align: center;
+    padding: 1rem;
+    }
+
+    .why-header h3 {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #2c2c2c;
+    }
+
+    .why-icon-full {
+    width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem;
+    }
+
+    .why-dropdown {
+    display: none;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: #2c2c2c;
+    background-color: #fff;
+    }
+
+    .why-item.active .why-dropdown {
+    display: block;
+    }    
+    
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form input,
+    form textarea {
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      background-color: #8c7f7a;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #63615d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #8c7f7a;
+      color: #fff;
+    }
+
+    .footer-container {
+      position: relative;
+      background-color: #8c7f7a;
+      color: #fff;
+      padding: 1rem;
+      padding-right: 140px; /* Reserve space for logo */
+      text-align: center;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 60px;
+      flex-wrap: wrap;
+    }
+
+    .footer-text {
+      flex: 1 1 auto;
+      max-width: 100%;
+    }
+
+    .footer-logo {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px;
+      width: auto;
+    }
+
+
+    input[type="file"] {
+      margin-top: 0.5rem;
+    }
+
+    small {
+      color: #666;
+      font-size: 0.85rem;
+      display: block;
+      margin-top: 0.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .logo,
+      .right-logo {
+        max-width: 80px;
+      }
+
+      .company-title {
+        font-size: 1.2rem;
+        text-align: center;
+        width: 100%;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+
+      .hero {
+        padding: 6rem 1rem;
+        background-position: center;
+      }
+
+      .dropdown-menu {
+        position: static;
+        width: 100%;
+        background-color: #8c7f7a;
+        border-radius: 6px;
+        margin-top: 0.5rem;
+      }
+
+      .nested-dropdown {
+        position: relative;
+      }
+
+      .nested-menu {
+        position: static !important;
+        display: none;
+        margin: 0.5rem auto;
+        max-width: 90%;
+        padding: 1rem;
+        background: #ffffff;
+        border-radius: 6px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+
+      .nested-toggle::after {
+        content: '▼';
+        float: right;
+        font-size: 0.7rem;
+      }
+    
+
+      .footer-logo {
+        height: 30px;
+      }
+
+      .footer-container {
+        padding-right: 80px;
+        font-size: 0.9rem;
+      }
+
+      .services-grid {
+         grid-template-columns: 1fr;
+        }
+
+        .service-icon{
+            max-height: 200px;
+        }
+
+        .why-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .why-icon-full {
+            max-height: 200px;
+        }
+    }
+
+
+    @media (min-width: 769px){
+      .nested-dropdown:hover .nested-menu {
+        display: block;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding-top: 160px; /* accommodate header space */
+      }
+
+      .hero {
+        padding: 5rem 1rem;
+      }
+
+      .footer-logo {
+        right: 0.5rem;
+        height: 25px;
+      }
+
+      .footer-container {
+        padding-right: 60px;
+      }
+
+      .dropdown-btn {
+        font-size: 0.9rem;
+      }
+    }
+
+    .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    grid-auto-rows: min-content;
+    }
+
+    .service-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-self: start; 
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    }
+
+    .service-header {
+    cursor: pointer;
+    padding: 1rem;
+    text-align: center;
+    }
+
+    .service-header h3 {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    }
+
+    .service-icon {
+    width: 100%;
+    max-height: 180px;
+    object-fit: contain;
+    border-bottom: 1px solid #eee;
+    padding: 0.5rem;
+    }
+
+    .dropdown-content {
+    display: none;
+    padding: 1rem;
+    font-size: 0.95rem;
+    color: #2c2c2c;
+    background-color: #fff;
+    }
+
+    .service-item.active .dropdown-content {
+    display: block;
+    }
+
+  </style>
+</head>
+<body>
+    
+  <header>
+    <div class="container header-container">
+      <h1 class="company-title"><strong> HR Solution & Consultancy</strong></h1>
+      <img src="assets/logosmallpurple.png" alt="Company Logo" class="logo right-logo" />
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li class="dropdown-header">
+          <a href="#">Recruitment Solution ▾</a>
+          <ul class="dropdown-menu">
+            <li class="nested-dropdown">
+              <a href="#">Candidate ▸</a>
+              <ul class="nested-menu">
+                <li>
+                  <div class="info-block">
+                    <p><strong>Send to:</strong> absoluthrsolution@gmail.com</p>
+                    <ul>
+                      <li>Name</li>
+                      <li>Years of experience</li>
+                      <li>Current position</li>
+                      <li>Current salary</li>
+                      <li>Expected salary</li>
+                      <li>Notice Period</li>
+                      <li>Resume (as attachment)</li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li class="nested-dropdown">
+              <a href="#" class="nested-toggle">Company ▸</a>
+                <ul class="nested-menu">
+                <li>
+                  <div class="info-block">
+                    <p><strong>Send via:</strong> <br> <a href="#contact" class="contact-link">Contact Form</a></p>
+                    <ul>
+                      <li>Company name</li>
+                      <li>Years of experience required</li>
+                      <li>Skills required</li>
+                      <li>Salary offering</li>
+                    </ul>
+                    <div class="note">
+                      <p><strong>Note:</strong></p>
+                      <ul>
+                        <li>For each resume requested, <strong>8.33% of the offered salary</strong> must be paid to Absolute HR.</li>
+                        <li>Resume will be shared only after payment confirmation.</li>
+                        <li>If the candidate resigns or leaves within <strong>3 months</strong> of joining, a replacement will be provided without any extra charges.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="assets/Absolute Profile.pdf" download>Download Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2 style="color: #333;"><strong>Trusted HR Partner Since 2017</strong></h2>
+      <p><strong><h3>Comprehensive HR solutions tailored for your business success</h3></strong></p>
+    </div>
+  </section>
+
+
+  <section id="about" class="container">
+    <h2>About Us</h2>
+    <p>Established in 2017 by Mrs. Preeti Verma in assistance of Mr. Rakesh Kumar Shrivastava, Absolute HR Solution and Consultancy specializes in labor law compliance, payroll processing, and end-to-end HR services. We simplify HR management and guide businesses through complex compliance landscapes with precision and confidentiality.</p>
+  </section>
+
+  <section id="services" class="container">
+  <h2>Our Services</h2>
+  <div class="services-grid">
+
+    <div class="service-item">
+      <div class="service-header" onclick="toggleExclusiveService(this)">
+        <img src="assets/Labourlaw.jpg" alt="Labourlaw" class="service-icon" />
+        <h3>Labour Law Consulting</h3>
+      </div> 
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Labour law consulting involves guiding businesses through complex employment laws and regulations to ensure compliance and protect employee rights.</p>
+        <p><strong>What we provide:</strong> We offer expert advice and documentation support on Central and State labour laws including Minimum Wages, Factories Act, Industrial Disputes, and more.</p>
+        <p><strong>How it benefits you:</strong> Avoid penalties and legal conflicts while ensuring a fair and safe workplace that complies with government mandates.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/payroll.jpg" alt="Payroll" class="service-icon" />
+            <h3>Payroll Processing</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Payroll processing is the administration of employee salaries, deductions, taxes, and net payments on a monthly basis.</p>
+        <p><strong>What we provide:</strong> We handle end-to-end payroll tasks including salary calculations, TDS, PF/ESI deductions, payslips, and statutory filings.</p>
+        <p><strong>How it benefits you:</strong> Reduce administrative burden, eliminate errors, and ensure employees are paid correctly and on time, every time.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+        <img src="assets/compensation.avif" alt="Compensation" class="service-icon" />
+        <h3>Compensation & Benefits</h3>
+      </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Compensation and benefits involve structuring employee salaries and perks to align with company goals and employee expectations.</p>
+        <p><strong>What we provide:</strong> We help design competitive pay structures, incentive plans, and benefits packages suited to your business needs.</p>
+        <p><strong>How it benefits you:</strong> Attract and retain top talent while boosting employee satisfaction and staying compliant with tax and labour laws.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/scompliance.png" alt="Statutory Compliance" class="service-icon" />
+            <h3>Statutory Compliance (EPF, ESI, etc.)</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Statutory compliance refers to adhering to legal requirements like Provident Fund, ESI, and other labour-related laws.</p>
+        <p><strong>What we provide:</strong> We manage documentation, submissions, inspections, and deadlines for all applicable statutory contributions and returns.</p>
+        <p><strong>How it benefits you:</strong> Ensure legal compliance, avoid fines and penalties, and build a trustworthy reputation with employees and regulators.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/adminhr.jpg" alt="Administrator HR Consultancy" class="service-icon" />
+            <h3>Administrator HR Consultancy</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Admin HR consultancy supports the routine HR functions such as record keeping, onboarding, and HR policy management.</p>
+        <p><strong>What we provide:</strong> We assist with documentation, HRIS usage, employee records, benefits administration, and process audits.</p>
+        <p><strong>How it benefits you:</strong> Streamline HR operations, maintain compliance, and focus on strategic HR goals without worrying about administrative overload.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/recruitment.webp" alt="Recruitment" class="service-icon" />
+            <h3>Recruitment and Staffing Solution</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Manpower placement involves sourcing, screening, and recruiting candidates for open positions within your organization.</p>
+        <p><strong>What we provide:</strong> We offer customized hiring solutions for both core and non-core sectors, delivering recruitment services for entry to senior-level roles across MNCs, SMEs, FMCGs, IT sector and Engineering industries. Our offerings include permanent, contractual, and project-based staffing.</p>
+        <p><strong>How it benefits you:</strong> Reduce hiring time, improve candidate quality, and focus on core business functions while we handle the talent pipeline.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/faclicense.jpg" alt="Factory License consulting" class="service-icon" />
+            <h3>Factory Liscence Consulting</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Factory license consulting ensures that your industrial operations comply with legal requirements set by the Factories Act.</p>
+        <p><strong>What we provide:</strong> We manage the complete process of applying for new licenses, renewals, modifications, and inspections.</p>
+        <p><strong>How it benefits you:</strong> Operate without legal interruptions and gain the trust of stakeholders through transparent compliance.</p>
+      </div>
+    </div>
+
+    <div class="service-item">
+        <div class="service-header" onclick="toggleExclusiveService(this)">
+            <img src="assets/pollutioncompliance.webp" alt="Pollution Compliance" class="service-icon" />
+            <h3>Air & Water Pollution Compliance</h3>
+        </div>
+      <div class="dropdown-content">
+        <p><strong>What it means:</strong> Businesses must comply with pollution control laws related to air and water usage/disposal, regulated by environmental boards.</p>
+        <p><strong>What we provide:</strong> We facilitate clearances, renewals, and reporting with the State Pollution Control Boards to ensure full environmental compliance.</p>
+        <p><strong>How it benefits you:</strong> Avoid environmental penalties, reduce operational risks, and enhance your brand’s sustainability credentials.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <section id="why" class="container section-box">
+  <h2>Why Choose Us</h2>
+  <div class="why-grid">
+    <div class="why-item" onclick="toggleWhyItem(this)">
+        <div class="why-header">
+        <img src="assets/multidomain.png" alt="Expertise" class="why-icon-full" />
+        <h3>Multi-Domain Expertise</h3>
+        </div>
+        <div class="why-dropdown">
+        <p><strong>What it means:</strong> Our team brings deep experience from various industries including manufacturing, IT, healthcare, and logistics.</p>
+        <p><strong>What we provide:</strong> Customized HR strategies and compliance practices that align with the unique demands of each sector.</p>
+        <p><strong>How it helps you:</strong> You benefit from solutions that are practical, industry-specific, and immediately applicable to your business environment.</p>
+        </div>
+    </div>
+
+    <div class="why-item" onclick="toggleWhyItem(this)">
+        <div class="why-header">
+        <img src="assets/tailoredsol.jpg" alt="Tailored Solutions" class="why-icon-full" />
+        <h3>Tailored Solutions</h3>
+        </div>
+        <div class="why-dropdown">
+        <p><strong>What it means:</strong> No one-size-fits-all approach—we design services based on your company’s size, goals, and workforce dynamics.</p>
+        <p><strong>What we provide:</strong> Personalized service packages that address your exact HR, compliance, and operational challenges.</p>
+        <p><strong>How it helps you:</strong> Get the right level of support without paying for unnecessary services.</p>
+        </div>
+    </div>
+
+    <div class="why-item" onclick="toggleWhyItem(this)">
+        <div class="why-header">
+        <img src="assets/comcentric.png" alt="Compliance Centric" class="why-icon-full" />
+        <h3>Compliance Centric Approach</h3>
+        </div>
+        <div class="why-dropdown">
+        <p><strong>What it means:</strong> We focus on up-to-date legal compliance and HR regulations, minimizing your legal and financial risks.</p>
+        <p><strong>What we provide:</strong> Monitoring and implementation of labor law updates, timely statutory filings, and audit preparedness.</p>
+        <p><strong>How it helps you:</strong> Stay legally secure and avoid fines or operational disruptions.</p>
+        </div>
+    </div>
+
+    <div class="why-item" onclick="toggleWhyItem(this)">
+        <div class="why-header">
+        <img src="assets/timelydelivery.png" alt="Timely Delivery" class="why-icon-full" />
+        <h3>Timely and Efficient Delivery</h3>
+        </div>
+        <div class="why-dropdown">
+        <p><strong>What it means:</strong> We understand the value of your time and business continuity.</p>
+        <p><strong>What we provide:</strong> Swift turnaround on payroll, licensing, recruitment, and compliance reports.</p>
+        <p><strong>How it helps you:</strong> Focus on your core business without HR delays or administrative bottlenecks.</p>
+        </div>
+    </div>
+
+    <div class="why-item" onclick="toggleWhyItem(this)">
+        <div class="why-header">
+        <img src="assets/confidential.jpg" alt="Confidentiality" class="why-icon-full" />
+        <h3>Strict Confidentiality</h3>
+        </div>
+        <div class="why-dropdown">
+        <p><strong>What it means:</strong> We take data security seriously and operate with complete discretion.</p>
+        <p><strong>What we provide:</strong> Secure data handling protocols and non-disclosure compliance to protect sensitive information.</p>
+        <p><strong>How it helps you:</strong> Trust that your company’s and employees’ data is handled with integrity and security.</p>
+        </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/mnnvwydl" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="tel" name="phone" placeholder="Your Contact Number" required pattern="[0-9+ ]{7,15}" />
+        <textarea name="message" placeholder="Your Message" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-text">
+        <p>&copy; 2025 Absolute HR Solution & Consultancy. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // This assumes you will assign the form an ID if needed
+    const form = document.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        // Optional: only prevent if you want custom handling
+        // e.preventDefault();
+        alert('Thank you for contacting Absolute HR. We will get back to you shortly!');
+        // Optional: this.reset(); // Don't reset if Netlify is handling it
+      });
+    }
+  </script>
+  <script>
+    document.querySelectorAll('.dropdown-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const parent = button.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll('.nested-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const menu = this.nextElementSibling;
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+  </script>
+  <script>
+    function toggleExclusiveService(header) {
+        const clickedItem = header.closest('.service-item');
+
+        // Collapse all other items
+        document.querySelectorAll('.service-item').forEach(item => {
+        if (item !== clickedItem) {
+            item.classList.remove('active');
+        }
+        });
+
+        // Toggle only this one
+        clickedItem.classList.toggle('active');
+    }
+    </script>
+    <script>
+    function toggleWhyItem(clickedItem) {
+        const listItems = document.querySelectorAll('.why-list li');
+
+        listItems.forEach(item => {
+        if (item !== clickedItem) {
+            item.classList.remove('active');
+        }
+        });
+
+        clickedItem.classList.toggle('active');
+    }
+    </script>
+  </body>
+</html>
